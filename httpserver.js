@@ -1,38 +1,20 @@
-var express = require('express');
+//Lets require/import the HTTP module
 var app = express();
-var fs      = require('fs');
-var parser  = require('body-parser');
+var ip_address = process.env.OPENSHIFT_NODEJS_IP;
 
-//Setup ip adress and port
-var ipaddress ;
+//Lets define a port we want to listen to
+const PORT=process.env.OPENSHIFT_NODEJS_PORT || 8080; 
 
-function initIPAdress() {
-    var adr = process.env.OPENSHIFT_NODEJS_IP;
-    if (typeof adr === "undefined") {
-            //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
-            //  allows us to run/test the app locally.
-            console.warn('No OPENSHIFT_NODEJS_IP var, using localhost');
-            adr = 'localhost';
-    }
-
-    ipaddress = adr;
+//We need a function which handles requests and send response
+function handleRequest(request, response){
+    response.end('It Works!! Path Hit: ');
 }
 
-var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+//Create a server
+var server = app.createServer(handleRequest);
 
-
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
-
-app.get('/admin', function (req, res) {
-        res.setHeader('Content-Type', 'text/html'); 
-        res.send( fs.readFileSync('./index_admin.html') );
-})
-
-initIPAdress(); //Setup IP adress before app.listen()
-
-app.listen(port, ipaddress, function() {
-        console.log('%s: Node server started on %s:%d ...',
-                        Date(Date.now() ), ipaddress, port);
-});
+//Lets start our server
+server.listen(PORT, ip_address, function(){
+    //Callback triggered when server is successfully listening. Hurray!
+    console.log("Server listening on: http://localhost:");
+});	
