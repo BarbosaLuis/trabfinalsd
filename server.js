@@ -1,6 +1,6 @@
 //Lets require/import the HTTP module
 var app = express();
-var ip_address = process.env.OPENSHIFT_NODEJS_IP || ;
+var ip_address = process.env.OPENSHIFT_NODEJS_IP;
 
 //Lets define a port we want to listen to
 const PORT=process.env.OPENSHIFT_NODEJS_PORT || 8080; 
