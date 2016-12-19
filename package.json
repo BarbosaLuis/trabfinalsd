@@ -8,7 +8,7 @@
     "build-js": "rm-rf ./dist && babel src --out-dir dist --copy-files",
     "dev": "NODE_ENV=development nodemon server.js",
     "postinstall": "npm run build-js",
-    "start": "node server.js"
+    "start": "webpack-dev-server --hot"
   },
   "repository": {
     "type": "git",
