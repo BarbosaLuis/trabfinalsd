@@ -1,4 +1,5 @@
 //Lets require/import the HTTP module
+var express = require('express');
 var app = express();
 var ip_address = process.env.OPENSHIFT_NODEJS_IP;
 
