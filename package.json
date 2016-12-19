@@ -5,9 +5,6 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-js": "rm-rf ./dist && babel src --out-dir dist --copy-files",
-    "dev": "NODE_ENV=development nodemon server.js",
-    "postinstall": "npm run build-js",
     "start": "node server.js"
   },
   "repository": {
